@@ -1,9 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
 
 
 function CartWidget() {
     return(
-        <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
+        <FontAwesomeIcon icon={faCartPlus} />
     );
 }
 
