@@ -1,9 +1,9 @@
 
 import CartWidget from "../CartWidget/CartWidget";
-import { Container, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 
 
-function Navbar() {
+function Navegacion() {
     return (
       <Navbar bg="light" expand="lg">
         <Container>
@@ -27,4 +27,4 @@ function Navbar() {
     );
   }
   
-  export default Navbar;
+  export default Navegacion;
