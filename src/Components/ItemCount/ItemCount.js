@@ -3,8 +3,13 @@ import React, {useState} from 'react';
 
 function ItemCount({stockProp}) {
 
-    const [stock, setstock] = useState(stockProp)
+    const [stock, setstock] = useState()
     const [addNumber, setAddNumber] = useState(1)
+    
+    
+    setstock(stockProp)
+    
+    
     function plusNumber() {
         if (addNumber<stock) {
             setAddNumber(addNumber + 1)
@@ -19,9 +24,9 @@ function ItemCount({stockProp}) {
     return(
         <>
         <ButtonGroup aria-label="Basic example">
-            <Button variant="primary" onClick={minusNumber()}>-</Button>
+            <Button variant="primary" onClick={()=>minusNumber()}>-</Button>
             <Button variant="secondary"> {addNumber} </Button>
-            <Button variant="primary" onClick={plusNumber()}>+</Button>
+            <Button variant="primary" onClick={()=>plusNumber()}>+</Button>
         </ButtonGroup> <br />
         <Button variant="outline-success">Agregar al Carrito</Button>
         </>
