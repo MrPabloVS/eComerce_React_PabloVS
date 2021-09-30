@@ -16,7 +16,7 @@ function App() {
     <>
       <Navegacion/>
       <ItemListContainer/>
-      <ItemCount></ItemCount>
+      <ItemCount stockProp={5} />
     </>
   );
 }
