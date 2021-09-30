@@ -3,11 +3,11 @@ import React, {useState} from 'react';
 
 function ItemCount({stockProp}) {
 
-    const [stock, setstock] = useState()
+    const [stock, setstock] = useState(stockProp)
     const [addNumber, setAddNumber] = useState(1)
     
     
-    setstock(stockProp)
+    
     
     
     function plusNumber() {
