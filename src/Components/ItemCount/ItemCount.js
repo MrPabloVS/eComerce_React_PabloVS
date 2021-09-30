@@ -16,7 +16,7 @@ function ItemCount({stockProp}) {
         }
     }
     function minusNumber() {
-        if (addNumber>=1) {
+        if (addNumber>1) {
             setAddNumber(addNumber - 1)
         }
     }
