@@ -5,7 +5,8 @@ import Navegacion from './Components/Navegacion/Navegacion';
 import ItemListContainer from './Components/ItemListContainer/ItemListContainer';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
-import ItemCount from './Components/ItemCount/ItemCount'
+import ItemList from './Components/ItemList/ItemList'
+
 
 
 
@@ -16,7 +17,8 @@ function App() {
     <>
       <Navegacion/>
       <ItemListContainer/>
-      <ItemCount stockProp={5} />
+        
+      
     </>
   );
 }

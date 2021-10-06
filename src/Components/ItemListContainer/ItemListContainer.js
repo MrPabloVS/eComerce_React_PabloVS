@@ -1,11 +1,11 @@
-
+import ItemList from "../ItemList/ItemList";
 
 function ItemListContainer() {
     
     
     return (
       <div className="bg-black">
-          <p className="text-light text-center">No hay articulos disponibles.</p>
+          <ItemList></ItemList>
       </div>
     );
   }
