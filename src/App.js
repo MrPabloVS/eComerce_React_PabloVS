@@ -5,7 +5,7 @@ import Navegacion from './Components/Navegacion/Navegacion';
 import ItemListContainer from './Components/ItemListContainer/ItemListContainer';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
-import ItemList from './Components/ItemList/ItemList'
+import {BrowserRouter, Route, Switch} from react-router-dom
 
 
 
@@ -14,12 +14,17 @@ library.add(fas,)
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Navegacion/>
+      <Switch>
+        <Route exact path="/">
       <ItemListContainer/>
-        
-      
-    </>
+        </Route>
+        <Route exact path="*">
+          <h1>Pagina no encontrada</h1>
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
