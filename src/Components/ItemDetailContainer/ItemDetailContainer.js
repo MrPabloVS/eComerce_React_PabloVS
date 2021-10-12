@@ -1,11 +1,12 @@
 GET `https://api.pokemontcg.io/v2/cards`
+import axios from 'axios';
 import ItemDetail from '../ItemDetail/ItemDetail'
 import React, {useState, useEffect} from 'react';
 
 function ItemDetailContainer({id}) {
     const getPokemon = new Promise((resolve, reject)=>{
         setTimeout(() => {
-            fetch(`https://api.pokemontcg.io/v2/cards`)
+            axios.get(`https://api.pokemontcg.io/v2/cards`)
             .then(resolve(Response.data))
             
         }, 2000);
