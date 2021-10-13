@@ -5,15 +5,19 @@ import axios from "axios";
 
 
 function ItemList() {
-    const [lista, setLista] = useState([])
+    let lista = []
+    //const [lista, setLista] = useState([])
     const getlista = async () => {
 
         try {
             const respuesta = await axios.get( `https://api.pokemontcg.io/v2/cards`)
             console.log(respuesta.data)
-            setLista(respuesta.data)
+            //setLista(respuesta.data)
+            lista = (respuesta.data.data)
+            console.log(lista)
         } catch (error) {
             console.log(error)
+            
         }
     }
         // {id:1,itemName:"Iphone 6",Price:"300000$",stock:10 ,img:"https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP705/SP705-iphone_6-mul.png"},
@@ -51,7 +55,7 @@ function ItemList() {
     return(
         <div>
         
-            {lista.map(u=> <Item key={u.data.id}  itemName={u.data.name} itemPrice={"$" + u.data.cardmarket.prices.trendPrice} itemImg={u.data.images.small} stockProp={u.data.set.printedTotal} />) }
+            {lista.map(u=> <Item key={u.id}  itemName={u.name} itemPrice={"$" + u.cardmarket.prices.trendPrice} itemImg={u.images.small} stockProp={u.set.printedTotal} />) }
         
         </div>
     );
