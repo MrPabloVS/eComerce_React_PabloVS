@@ -5,7 +5,7 @@ import Navegacion from './Components/Navegacion/Navegacion';
 import ItemListContainer from './Components/ItemListContainer/ItemListContainer';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
-import {BrowserRouter, Route, Switch} from react-router-dom
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
 
 

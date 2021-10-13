@@ -3,6 +3,7 @@ import axios from 'axios';
 import ItemDetail from '../ItemDetail/ItemDetail'
 import React, {useState, useEffect} from 'react';
 
+
 function ItemDetailContainer({id}) {
     const getPokemon = new Promise((resolve, reject)=>{
         setTimeout(() => {
@@ -28,7 +29,7 @@ function ItemDetailContainer({id}) {
     }, )
     return(
         <>
-           <ItemDetail itemImg={pokeResult[id].images.small} itemName={pokeResult[id].name} itemPrice={pokeResult[id].prices.market} stockProp={pokeResult[id].set.total}></ItemDetail> 
+           <ItemDetail itemImg={pokeResult[id].images.large} itemName={pokeResult[id].name} itemPrice={pokeResult[id].prices.market} stockProp={pokeResult[id].set.total}></ItemDetail> 
         </>
     )
 
