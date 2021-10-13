@@ -23,9 +23,9 @@ function App() {
         <Route exact path="/">
       <ItemListContainer/>
         </Route>
-        <Route exact path="*">
+        {/* <Route exact path="*">
           <h1>Pagina no encontrada</h1>
-        </Route>
+        </Route> */}
         <Route exact path="/stages/:stage"> 
             <StageListContainer/>
         </Route>
