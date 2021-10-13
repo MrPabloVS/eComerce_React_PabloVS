@@ -1,6 +1,7 @@
 
 import CartWidget from "../CartWidget/CartWidget";
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 
 function Navegacion() {
@@ -13,12 +14,10 @@ function Navegacion() {
             <Nav className="me-auto">
               <Nav.Link href="#home">Home</Nav.Link>
               <Nav.Link href="#link">Link</Nav.Link>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+              <NavDropdown title="Stage" id="basic-nav-dropdown">
+                <Link to="/stages/basic"><NavDropdown.Item href="#action/3.1">Basic</NavDropdown.Item></Link>
+                <Link to="/stages/stage 1"><NavDropdown.Item href="#action/3.2">Stage 1</NavDropdown.Item></Link>
+                <Link to="/stages/stage 2"><NavDropdown.Item href="#action/3.3">Stage 2</NavDropdown.Item></Link>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
