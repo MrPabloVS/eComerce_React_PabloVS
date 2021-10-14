@@ -1,24 +1,29 @@
 import axios from "axios"
 import Item from "../Item/Item"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router";
 
-function StageList({Stage}) {
+function StageList() {
+    const {Stage} = useParams()
    
-    let listaStage = []
-    function filtro(key, stage) {
-        if (stage === "Basic") {
-            listaStage.push(key)
-        }else if (stage === "Stage 1") {
-            listaStage.push(key)
-        }else if (stage === "Stage 2") {
-            listaStage.push(key)
+    //let listaStage = []
+
+    const [listaStage, setListaStage] = useState([])
+
+    function filtro(key, keyStage, stage) {
+        if (stage == keyStage) {
+            //listaStage.push(key)
+            setListaStage(...listaStage, key)
+            
+
         }
     }
+
     const getlistaStage = async () => {
 
         try {
             const respuesta = await axios.get( `https://api.pokemontcg.io/v2/cards`)
-            respuesta.data.data.map(u=> filtro(u, Stage)
+            respuesta.data.data.map(u=> filtro(u, u.subtypes[0], Stage)
             )
             console.log(listaStage)
         } catch (error) {

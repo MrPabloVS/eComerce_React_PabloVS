@@ -49,7 +49,7 @@ function ItemList() {
 
     useEffect(() => {
         getlista()
-    }, [])
+    }, [getlista]) 
     
     
     return(
