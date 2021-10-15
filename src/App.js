@@ -7,9 +7,12 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import StageListContainer from './Components/StageListContainer/StageListContainer'
+import { createContext } from 'react';
+import { CartContext } from './Context/CartContext';
 
 
 
+export const AppContext = createContext()
 library.add(fas,)
 
 function App() {
@@ -17,6 +20,8 @@ function App() {
   
 
   return (
+    <AppContext.Provider>
+      <CartContext.Provider>
     <BrowserRouter>
       <Navegacion/>
       <Switch>
@@ -31,6 +36,8 @@ function App() {
         </Route>
       </Switch>
     </BrowserRouter>
+    </CartContext.Provider>
+    </AppContext.Provider>
   );
 }
 
