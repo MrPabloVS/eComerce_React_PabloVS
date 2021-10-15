@@ -30,7 +30,7 @@ function ItemDetailContainer() {
 
     return(
         <>
-           {/* <ItemDetail itemName={Poke.name} itemPrice={"$" + Poke.cardmarket.prices.trendPrice} itemImg={Poke.images.small} stockProp={Poke.set.printedTotal} itemId={Poke.id}></ItemDetail>  */}
+           <ItemDetail itemName={Poke.name} itemPrice={"$" + Poke.cardmarket.prices.trendPrice} itemImg={Poke.images.small} stockProp={Poke.set.printedTotal} itemId={Poke.id}></ItemDetail> 
         </>
     )
 
