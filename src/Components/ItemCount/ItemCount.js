@@ -1,5 +1,6 @@
-import {ButtonGroup, Button} from 'react-bootstrap';
+import {ButtonGroup, Button, Row, Col} from 'react-bootstrap';
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom' 
 
 function ItemCount({stockProp}) {
 
@@ -22,14 +23,23 @@ function ItemCount({stockProp}) {
     }
 
     return(
-        <>
-        <ButtonGroup aria-label="Basic example">
-            <Button variant="primary" onClick={()=>minusNumber()}>-</Button>
-            <Button variant="secondary"> {addNumber} </Button>
-            <Button variant="primary" onClick={()=>plusNumber()}>+</Button>
-        </ButtonGroup> <br />
-        <Button variant="outline-success">Agregar al Carrito</Button>
-        </>
+        <div className="container-fluid">
+            <Row>
+                <Col>
+                    <ButtonGroup aria-label="Basic example" className="align-items-center">
+                        <Button variant="primary" onClick={()=>minusNumber()}>-</Button>
+                        <Button variant="secondary"> {addNumber} </Button>
+                        <Button variant="primary" onClick={()=>plusNumber()}>+</Button>
+                    </ButtonGroup> <br />
+                </Col>
+                <Col>
+                    <div className="d-grid gap-2">
+                        <Button variant="outline-success" size="lg">Agregar al Carrito</Button>
+                    </div>
+                </Col>
+            </Row>
+            
+        </div>
     );
 }
 

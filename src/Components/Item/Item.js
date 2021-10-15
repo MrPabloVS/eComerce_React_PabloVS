@@ -1,22 +1,32 @@
 import ItemCount from "../ItemCount/ItemCount";
-import {Card} from 'react-bootstrap';
+import {Card, Col, Row, Button} from 'react-bootstrap';
+import {Link} from 'react-router-dom'
 
 
 
-function Item({itemImg, itemName, itemPrice, stockProp}) {
+function Item({itemImg, itemName, itemPrice, stockProp, itemId}) {
     return(
-        <>
+        <Col>
         <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={itemImg} />
             <Card.Body>
-                <Card.Title>{itemName}</Card.Title>
-                <Card.Text>
-                {itemPrice}
-                </Card.Text>
+                <Row>
+                    <Col>
+
+                        <Card.Title>{itemName}</Card.Title>
+                        <Card.Text>{itemPrice}</Card.Text>
+
+                    </Col>
+                    <Col>
+                        <Link to={`/info/${itemId}`}><Button>+info</Button></Link>
+                    </Col>
+                </Row>
+
                 <ItemCount stockProp={stockProp}/>
+
             </Card.Body>
         </Card>
-        </>
+        </Col>
     );
 }
 

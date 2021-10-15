@@ -8,7 +8,8 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import StageListContainer from './Components/StageListContainer/StageListContainer'
 import { createContext } from 'react';
-import { CartContext } from './Context/CartContext';
+import  CartContextProvider  from './Context/CartContext';
+import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
 
 
 
@@ -21,7 +22,7 @@ function App() {
 
   return (
     <AppContext.Provider>
-      <CartContext.Provider>
+      {/* <CartContextProvider> */}
     <BrowserRouter>
       <Navegacion/>
       <Switch>
@@ -34,9 +35,12 @@ function App() {
         <Route exact path="/stages/:stage"> 
             <StageListContainer/>
         </Route>
+        <Route exact path="/info/:id">
+            <ItemDetailContainer/>
+        </Route>
       </Switch>
     </BrowserRouter>
-    </CartContext.Provider>
+    {/* </CartContextProvider> */}
     </AppContext.Provider>
   );
 }

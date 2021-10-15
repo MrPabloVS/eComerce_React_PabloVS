@@ -1,11 +1,12 @@
 import Item from "../Item/Item";
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
+import {Row} from 'react-bootstrap'
+
 
 
 
 function ItemList() {
-    //let lista = []
     const [lista, setLista] = useState([])
     const getlista = async () => {
 
@@ -13,7 +14,6 @@ function ItemList() {
             const respuesta = await axios.get( `https://api.pokemontcg.io/v2/cards`)
             console.log(respuesta.data)
             setLista(respuesta.data.data)
-            //lista = (respuesta.data.data)
             console.log(lista)
         } catch (error) {
             console.log(error)
@@ -53,10 +53,10 @@ function ItemList() {
     
     
     return(
-        <div>
-        
-            {lista.map(u=> <Item key={u.id}  itemName={u.name} itemPrice={"$" + u.cardmarket.prices.trendPrice} itemImg={u.images.small} stockProp={u.set.printedTotal} />) }
-        
+        <div>   
+            <Row xs={1} md={4} className="g-4">
+                {lista.map(u=> <Item key={u.id}  itemName={u.name} itemPrice={"$" + u.cardmarket.prices.trendPrice} itemImg={u.images.small} stockProp={u.set.printedTotal} itemId={u.id} />) }
+            </Row>
         </div>
     );
 }

@@ -1,4 +1,4 @@
-GET `https://api.pokemontcg.io/v2/cards`
+import ItemCount from '../ItemCount/ItemCount';
 import {Card} from 'react-bootstrap';
 
 function ItemDetail({itemImg, itemName, itemPrice, stockProp,}) {
