@@ -5,15 +5,15 @@ import axios from "axios";
 
 
 function ItemList() {
-    let lista = []
-    //const [lista, setLista] = useState([])
+    //let lista = []
+    const [lista, setLista] = useState([])
     const getlista = async () => {
 
         try {
             const respuesta = await axios.get( `https://api.pokemontcg.io/v2/cards`)
             console.log(respuesta.data)
-            //setLista(respuesta.data)
-            lista = (respuesta.data.data)
+            setLista(respuesta.data.data)
+            //lista = (respuesta.data.data)
             console.log(lista)
         } catch (error) {
             console.log(error)
@@ -49,7 +49,7 @@ function ItemList() {
 
     useEffect(() => {
         getlista()
-    }, [getlista]) 
+    }, []) 
     
     
     return(
