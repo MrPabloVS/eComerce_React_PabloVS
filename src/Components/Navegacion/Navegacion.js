@@ -2,9 +2,31 @@
 import CartWidget from "../CartWidget/CartWidget";
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import {useState, useEffect} from 'react'
+import axios from "axios";
 
 
 function Navegacion() {
+
+  const [Categorias, setCategorias] = useState([])
+
+    const getCategorias = async () => {
+
+        try {
+            const respuesta = await axios.get( `https://fakestoreapi.com/products/categories`)
+            console.log(respuesta.data)
+            setCategorias(respuesta.data)
+            console.log(Categorias)
+        } catch (error) {
+            console.log(error)
+            
+        }
+    }
+
+  useEffect(() => {
+    getCategorias()
+}, []) 
+
     return (
       <Navbar bg="light" expand="lg">
         <Container>
@@ -14,10 +36,8 @@ function Navegacion() {
             <Nav className="me-auto">
             <Link to="/"><Nav.Link href="#home">Home</Nav.Link></Link>
               <Nav.Link href="#link">Link</Nav.Link>
-              <NavDropdown title="Stage" id="basic-nav-dropdown">
-                <Link to="/stages/basic"><NavDropdown.Item href="#action/3.1">Basic</NavDropdown.Item></Link>
-                <Link to="/stages/stage1"><NavDropdown.Item href="#action/3.2">Stage 1</NavDropdown.Item></Link>
-                <Link to="/stages/stage2"><NavDropdown.Item href="#action/3.3">Stage 2</NavDropdown.Item></Link>
+              <NavDropdown title="Categories" id="basic-nav-dropdown">
+                {Categorias && Categorias.map(c => <Link to={`/categories/${c}`}><NavDropdown.Item href={`/categories/${c}`}>{c}</NavDropdown.Item></Link>)}
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>

@@ -8,16 +8,16 @@ function ItemDetailContainer() {
 
     const {id} = useParams()
     const [Poke, setPoke] = useState([])
-    //let Poke = []
+    
 
     const getPokeId = async () => {
 
         try {
-            const respuesta = await axios.get( `https://api.pokemontcg.io/v2/cards/${id}`)
+            const respuesta = await axios.get( `https://fakestoreapi.com/products/${id}`)
             console.log(respuesta.data)
-            setPoke(respuesta.data.data)
-            //Poke = respuesta.data.data
+            setPoke(respuesta.data)
             console.log(Poke)
+            console.log(id)
         } catch (error) {
             console.log(error)
             
@@ -30,7 +30,7 @@ function ItemDetailContainer() {
 
     return(
         <>
-           <ItemDetail itemName={Poke.name} itemPrice={"$" + Poke.cardmarket.prices.trendPrice} itemImg={Poke.images.small} stockProp={Poke.set.printedTotal} itemId={Poke.id}></ItemDetail> 
+           {Poke && Poke.map(poke => <ItemDetail itemName={Poke.title} itemPrice={"$" + Poke.price} itemImg={Poke.image} stockProp={5} itemId={Poke.id}></ItemDetail> )}
         </>
     )
 

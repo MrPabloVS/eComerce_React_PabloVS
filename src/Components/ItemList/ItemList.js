@@ -11,9 +11,9 @@ function ItemList() {
     const getlista = async () => {
 
         try {
-            const respuesta = await axios.get( `https://api.pokemontcg.io/v2/cards`)
+            const respuesta = await axios.get( `https://fakestoreapi.com/products`)
             console.log(respuesta.data)
-            setLista(respuesta.data.data)
+            setLista(respuesta.data)
             console.log(lista)
         } catch (error) {
             console.log(error)
@@ -29,23 +29,6 @@ function ItemList() {
     
     
 
-    // const task = new Promise((resolve, reject)=>{
-    //     setTimeout(() => {
-    //         resolve([lista])
-    //     }, 2000);
-    // })
-    // useEffect(() => {
-    //     task.then(res =>{
-    //         console.log(res)
-    //         setResult(lista)
-    //     }, err=>{
-    //         console.log(err)
-    //     }).finally(()=>{
-    //         console.log("Finalizado")
-    //     })
-    //     console.log(result)
-     //   
-    //}, )
 
     useEffect(() => {
         getlista()
@@ -55,7 +38,7 @@ function ItemList() {
     return(
         <div>   
             <Row xs={1} md={4} className="g-4">
-                {lista.map(u=> <Item key={u.id}  itemName={u.name} itemPrice={"$" + u.cardmarket.prices.trendPrice} itemImg={u.images.small} stockProp={u.set.printedTotal} itemId={u.id} />) }
+                {lista && lista.map(u=> <Item key={u.id}  itemName={u.title} itemPrice={"$" + u.price} itemImg={u.image} stockProp={5} itemId={u.id} />) }
             </Row>
         </div>
     );
