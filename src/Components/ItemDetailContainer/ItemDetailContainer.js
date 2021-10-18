@@ -7,16 +7,16 @@ import {useParams} from 'react-router'
 function ItemDetailContainer() {
 
     const {id} = useParams()
-    const [Poke, setPoke] = useState([])
+    const [Produc, setProduc] = useState([])
     
 
-    const getPokeId = async () => {
+    const getProducId = async () => {
 
         try {
             const respuesta = await axios.get( `https://fakestoreapi.com/products/${id}`)
             console.log(respuesta.data)
-            setPoke(respuesta.data)
-            console.log(Poke)
+            setProduc(respuesta.data)
+            console.log(Produc)
             console.log(id)
         } catch (error) {
             console.log(error)
@@ -25,13 +25,13 @@ function ItemDetailContainer() {
     }
 
     useEffect(() => {
-        getPokeId()
+        getProducId()
     }, [])
 
     return(
-        <>
-           {Poke && Poke.map(poke => <ItemDetail itemName={Poke.title} itemPrice={"$" + Poke.price} itemImg={Poke.image} stockProp={5} itemId={Poke.id}></ItemDetail> )}
-        </>
+     <>
+         <ItemDetail itemName={Produc.title} itemPrice={"$" + Produc.price} itemImg={Produc.image} stockProp={5} itemId={Produc.id}></ItemDetail>       
+     </>
     )
 
 }

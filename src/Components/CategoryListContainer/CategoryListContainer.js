@@ -3,7 +3,9 @@ import CategoryList from "../CategoryList/CategoryList"
 function CategoryListContainer() {
     return(
         <>
-            <CategoryList/>
+            <div className="bg-black">
+                <CategoryList/>
+            </div>
         </>
     )
 }

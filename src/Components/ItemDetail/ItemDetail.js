@@ -1,5 +1,7 @@
 import ItemCount from '../ItemCount/ItemCount';
 import {Card,Button} from 'react-bootstrap';
+import { Link } from "react-router-dom";
+
 
 function ItemDetail({itemImg, itemName, itemPrice, stockProp,}) {
     
