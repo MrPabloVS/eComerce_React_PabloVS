@@ -38,6 +38,9 @@ function App() {
         <Route exact path="/info/:id">
             <ItemDetailContainer/>
         </Route>
+        <Route exact path="/cart">
+
+        </Route>
       </Switch>
     </BrowserRouter>
     {/* </CartContextProvider> */}

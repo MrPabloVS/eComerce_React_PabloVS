@@ -1,5 +1,5 @@
 import ItemCount from '../ItemCount/ItemCount';
-import {Card} from 'react-bootstrap';
+import {Card,Button} from 'react-bootstrap';
 
 function ItemDetail({itemImg, itemName, itemPrice, stockProp,}) {
     
@@ -13,6 +13,7 @@ function ItemDetail({itemImg, itemName, itemPrice, stockProp,}) {
                     {itemPrice}
                     </Card.Text>
                     <ItemCount stockProp={stockProp}/>
+                    <Link to="/cart"><Button>Terminar mi compra</Button></Link>
                 </Card.Body>
                 </Card>
             </>
