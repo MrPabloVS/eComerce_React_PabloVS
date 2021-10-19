@@ -1,10 +1,10 @@
 import {ButtonGroup, Button, Row, Col} from 'react-bootstrap';
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom' 
 
-function ItemCount({stockProp}) {
 
-    const [stock, setstock] = useState(stockProp)
+function ItemCount({stockProp, totalOnCart}) {
+
+    const [stock, setstock] = useState(stockProp - totalOnCart)
     const [addNumber, setAddNumber] = useState(1)
     
     
