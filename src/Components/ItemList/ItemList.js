@@ -2,12 +2,14 @@ import Item from "../Item/Item";
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import {Row} from 'react-bootstrap'
-
+import Loading from "../Loading/Loading";
 
 
 
 function ItemList() {
     const [lista, setLista] = useState([])
+    const [Loading, setLoading] = useState(true)
+
     const getlista = async () => {
 
         try {
@@ -20,26 +22,29 @@ function ItemList() {
             
         }
     }
-        // {id:1,itemName:"Iphone 6",Price:"300000$",stock:10 ,img:"https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP705/SP705-iphone_6-mul.png"},
-        // {id:2,itemName:"Samsung S21",Price:"50000$",stock:3, img:"https://i.blogs.es/d9faf7/samsung-galaxy-s21-ultra-00-02/450_1000.jpg"},
-        // {id:3,itemName:"Alcatel 1V",Price:"70000$",stock:6, img:"https://i.blogs.es/6947e3/alcatel1v2020/450_1000.jpg"},
-        // {id:4,itemName:"Iphone XS",Price:"1000000$",stock:4, img:"https://m.media-amazon.com/images/I/81wcv7XP3cL._AC_SL1500_.jpg"}
-    
-    //const [result, setResult] = useState([])
+
+    const cambiarEstadoCarga = ()=> {
+        setTimeout(() => {
+            setLoading(false)
+        }, 5000);
+    }
+        
     
     
 
 
     useEffect(() => {
         getlista()
+        cambiarEstadoCarga()
     }, []) 
     
     
     return(
         <div>   
+            {Loading = false ? <Loading/> :
             <Row xs={1} md={4} className="g-4">
                 {lista && lista.map(u=> <Item key={u.id}  itemName={u.title} itemPrice={"$" + u.price} itemImg={u.image} stockProp={5} itemId={u.id} />) }
-            </Row>
+            </Row>}
         </div>
     );
 }
