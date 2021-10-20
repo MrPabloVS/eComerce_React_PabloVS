@@ -1,4 +1,4 @@
-import ItemCount from "../ItemCount/ItemCount";
+
 import {Card, Col, Row, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 
@@ -22,7 +22,7 @@ function Item({itemImg, itemName, itemPrice, stockProp, itemId}) {
                     </Col>
                 </Row>
 
-                <ItemCount stockProp={stockProp}/>
+                
 
             </Card.Body>
         </Card>

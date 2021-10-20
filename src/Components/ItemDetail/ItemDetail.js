@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 
 
-function ItemDetail({itemImg, itemName, itemPrice, stockProp,}) {
+function ItemDetail({itemImg, itemName, itemPrice, stockProp, condition = true}) {
 
     const {addNumber} = ItemCount
     const [totalOnCart, setTotalOnCart] = useState(0)
@@ -23,8 +23,9 @@ function ItemDetail({itemImg, itemName, itemPrice, stockProp,}) {
                     <Card.Text>
                     {itemPrice}
                     </Card.Text>
-                    <ItemCount stockProp={stockProp} totalOnCart={totalOnCart}/>
-                    <Link to="/cart"><Button>Terminar mi compra</Button></Link>
+                    {condition = true ? <ItemCount stockProp={stockProp} totalOnCart={totalOnCart}/> :
+                    <div><Link to="/cart"><Button>Terminar mi compra</Button></Link>
+                    <Link to="/"><Button>Seguir Comprando</Button></Link></div>}
                 </Card.Body>
                 </Card>
             </>
