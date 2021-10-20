@@ -1,12 +1,13 @@
 import {ButtonGroup, Button, Row, Col} from 'react-bootstrap';
 import React, {useState} from 'react';
+import { useContext } from 'react';
+import CartContextProvider from '../../Context/CartContext';
 
-
-function ItemCount({stockProp, totalOnCart}) {
+function ItemCount({stockProp, totalOnCart, itemId}) {
 
     const [stock, setstock] = useState(stockProp - totalOnCart)
     const [addNumber, setAddNumber] = useState(1)
-    
+    const cartList = useContext(CartContextProvider)
     
     
     
@@ -34,7 +35,7 @@ function ItemCount({stockProp, totalOnCart}) {
                 </Col>
                 <Col>
                     <div className="d-grid gap-2">
-                        <Button variant="outline-success" size="lg">Agregar al Carrito</Button>
+                        <Button onClick ={cartList(itemId)} variant="outline-success" size="lg">Agregar al Carrito</Button>
                     </div>
                 </Col>
             </Row>

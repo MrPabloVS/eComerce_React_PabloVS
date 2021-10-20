@@ -22,28 +22,28 @@ function App() {
 
   return (
     <AppContext.Provider>
-      {/* <CartContextProvider> */}
-    <BrowserRouter>
-      <Navegacion/>
-      <Switch>
-        <Route exact path="/">
-      <ItemListContainer/>
-        </Route>
-        {/* <Route exact path="*">
-          <h1>Pagina no encontrada</h1>
-        </Route> */}
-        <Route exact path="/categories/:category"> 
-            <CategoryListContainer/>
-        </Route>
-        <Route exact path="/info/:id">
-            <ItemDetailContainer/>
-        </Route>
-        <Route exact path="/cart">
+      <CartContextProvider>
+        <BrowserRouter>
+          <Navegacion/>
+          <Switch>
+            <Route exact path="/">
+          <ItemListContainer/>
+            </Route>
+            {/* <Route exact path="*">
+              <h1>Pagina no encontrada</h1>
+            </Route> */}
+            <Route exact path="/categories/:category"> 
+                <CategoryListContainer/>
+            </Route>
+            <Route exact path="/info/:id">
+                <ItemDetailContainer/>
+            </Route>
+            <Route exact path="/cart">
 
-        </Route>
-      </Switch>
-    </BrowserRouter>
-    {/* </CartContextProvider> */}
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </CartContextProvider>
     </AppContext.Provider>
   );
 }

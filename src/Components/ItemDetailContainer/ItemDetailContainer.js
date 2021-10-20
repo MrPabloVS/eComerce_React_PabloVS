@@ -30,7 +30,7 @@ function ItemDetailContainer() {
 
     return(
      <>
-         <ItemDetail itemName={Produc.title} itemPrice={"$" + Produc.price} itemImg={Produc.image} stockProp={5} itemId={Produc.id}></ItemDetail>       
+         <ItemDetail itemName={Produc.title} itemPrice={"$" + Produc.price} itemImg={Produc.image} stockProp={5} itemId={id}></ItemDetail>       
      </>
     )
 
