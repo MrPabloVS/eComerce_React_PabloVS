@@ -22,7 +22,7 @@ function App() {
 
   return (
     <AppContext.Provider>
-      <CartContextProvider>
+      {/* <CartContextProvider> */}
         <BrowserRouter>
           <Navegacion/>
           <Switch>
@@ -43,7 +43,7 @@ function App() {
             </Route>
           </Switch>
         </BrowserRouter>
-      </CartContextProvider>
+      {/* </CartContextProvider> */}
     </AppContext.Provider>
   );
 }

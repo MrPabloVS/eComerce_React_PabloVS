@@ -41,10 +41,10 @@ function ItemList() {
     
     return(
         <div>   
-            {Loading = false ? <Loading/> :
+            {/* {Loading = false ? <Loading/> :} */}
             <Row xs={1} md={4} className="g-4">
                 {lista && lista.map(u=> <Item key={u.id}  itemName={u.title} itemPrice={"$" + u.price} itemImg={u.image} stockProp={5} itemId={u.id} />) }
-            </Row>}
+            </Row>
         </div>
     );
 }
