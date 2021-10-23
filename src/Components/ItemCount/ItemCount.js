@@ -8,7 +8,7 @@ function ItemCount({stockProp, totalOnCart, itemId}) {
 
     const [stock, setstock] = useState(stockProp - totalOnCart)
     const [addNumber, setAddNumber] = useState(1)
-    const {cartList, setCartList} = useContext(CartContextProvider)
+    //const {cartList, setCartList} = useContext(CartContextProvider)
     const [seClickeo, setSeClickeo] = useState(false)
     
     
@@ -27,7 +27,7 @@ function ItemCount({stockProp, totalOnCart, itemId}) {
                 </Col>
                 <Col>
                     <div className="d-grid gap-2">
-                        <Button onClick ={()=>setSeClickeo(true), ()=>setCartList(...cartList, itemId)} variant="outline-success" size="lg">Agregar al Carrito</Button>
+                        <Button onClick ={()=>setSeClickeo(true) /* , ()=>setCartList(...cartList, itemId) */} variant="outline-success" size="lg">Agregar al Carrito</Button>
                     </div>
                 </Col>
             </Row>
