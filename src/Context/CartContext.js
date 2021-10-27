@@ -10,7 +10,7 @@ function CartContextProvider({children}) {
     const [Item, setItem] = useState([])
 
     const addItem=(item, cantidad)=>{
-        const findInCart = cartList.find(item)
+        const findInCart = cartList.find(element => element = item)
         const isInCart = ()=> {
             if (item === findInCart) {
                 return(true)
@@ -22,11 +22,11 @@ function CartContextProvider({children}) {
         
         setItem([item, cantidad])
 
-        if (isInCart === true) {
+        if (isInCart === false) {
             setCartList([...cartList, Item])
         }
 
-        setCartList([...cartList, item])
+        //setCartList([...cartList, item])
     }
 
     const clearCart =()=>{
