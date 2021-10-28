@@ -10,6 +10,7 @@ import CategoryListContainer from './Components/CategoryListContainer/CategoryLi
 import { createContext } from 'react';
 import  CartContextProvider  from './Context/CartContext';
 import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
+import Cart from './Components/Cart/Cart';
 
 
 
@@ -39,7 +40,7 @@ function App() {
                 <ItemDetailContainer/>
             </Route>
             <Route exact path="/cart">
-
+              <Cart/>
             </Route>
           </Switch>
         </BrowserRouter>

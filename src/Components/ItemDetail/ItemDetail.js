@@ -41,7 +41,7 @@ function ItemDetail({itemId,itemImg, itemName, itemPrice, stockProp, }) {
                     {/* seClickeo = true ? <ItemCount stockProp={stockProp} totalOnCart={totalOnCart} itemId={itemId}/> :
                      <div><Link to="/cart"><Button>Terminar mi compra</Button></Link>
                     <Link to="/"><Button>Seguir Comprando</Button></Link></div>  */}
-                    <ItemCount stockProp={stockProp} totalOnCart={totalOnCart} itemId={itemId}/>
+                    <ItemCount stockProp={stockProp} totalOnCart={totalOnCart} itemId={itemId} itemName={itemName}/>
                     {decidirBoton()}
                 </Card.Body>
                 </Card>
