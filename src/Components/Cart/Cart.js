@@ -1,10 +1,11 @@
 import { useCartContext } from "../../Context/CartContext";
+import CartItem from "../CartItem/CartItem";
 
 function Cart() {
     const {cartList} = useCartContext()
     return(
         <>
-        {cartList.map(u=> <h4>{u}</h4>) }
+        {cartList.map(i=> <CartItem itemName={i.name} itemAmount={i.amount} itemId={i.id} itemPrice={i.price}/>) }
         </>
     )
 }

@@ -5,7 +5,7 @@ import CartContextProvider from '../../Context/CartContext';
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../Context/CartContext'
 
-function ItemCount({stockProp, totalOnCart, itemId, itemName}) {
+function ItemCount({stockProp, totalOnCart, itemId, itemName, itemPrice}) {
 
     const [stock, setstock] = useState(stockProp - totalOnCart)
     const [addNumber, setAddNumber] = useState(1)
@@ -23,7 +23,7 @@ function ItemCount({stockProp, totalOnCart, itemId, itemName}) {
 
     function alClick() {
         setSeClickeo(true)
-        addItem(itemId,addNumber,itemName)
+        addItem(itemId,addNumber,itemName, itemPrice)
     }
     
     
