@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 
 
-function ItemDetail({itemId,itemImg, itemName, itemPrice, stockProp, }) {
+function ItemDetail({itemId,itemImg, itemName, itemPrice, stockProp, item }) {
     const {seClickeo} = ItemCount
     const {addNumber} = ItemCount
     const [totalOnCart, setTotalOnCart] = useState(0)
@@ -41,7 +41,7 @@ function ItemDetail({itemId,itemImg, itemName, itemPrice, stockProp, }) {
                     {/* seClickeo = true ? <ItemCount stockProp={stockProp} totalOnCart={totalOnCart} itemId={itemId}/> :
                      <div><Link to="/cart"><Button>Terminar mi compra</Button></Link>
                     <Link to="/"><Button>Seguir Comprando</Button></Link></div>  */}
-                    <ItemCount stockProp={stockProp} totalOnCart={totalOnCart} itemId={itemId} itemName={itemName} itemPrice={itemPrice}/>
+                    <ItemCount item={item} stockProp={stockProp} totalOnCart={totalOnCart} itemId={itemId} itemName={itemName} itemPrice={itemPrice}/>
                     {decidirBoton()}
                 </Card.Body>
                 </Card>

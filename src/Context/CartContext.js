@@ -9,6 +9,7 @@ function CartContextProvider({children}) {
     //States
     const [cartList, setCartList] = useState([])
     const [Item, setItem] = useState([])
+    const [sumaTotal, setSumaTotal] = useState(0)
 
     class cartItem {
         constructor(id, amount, name, price) {
@@ -21,7 +22,22 @@ function CartContextProvider({children}) {
     
 
     //Funcion addItem
-    const addItem=(id, amount, name, price)=>{
+    const addItem = (item, amount) => {
+
+        const index = cartList.findIndex(i => i.item.id === item.id)//-1, pos
+        console.log(index)
+    
+          if (index > -1) {
+            const cantidadEnCart = cartList[index].amount
+    
+            cartList.splice(index, 1)
+            setCartList([...cartList, { item, amount: amount + cantidadEnCart}])
+          }
+          else {
+            setCartList([...cartList, {item, amount}])
+          }
+      }
+    /* const addItem=(id, amount, name, price)=>{
         
          if (cartList.some((producto) => producto.id === id)) {
              for (const objeto of cartList) {
@@ -38,22 +54,34 @@ function CartContextProvider({children}) {
              console.log(cartList)
          }
         
-    }
+    } */
 
 
     //Funcion para borrar un solo Item
-    const clearSingleItem = (itemId) =>{
-        for (const objeto of cartList) {
-            if (objeto.id === itemId) {
-                delete cartList[objeto]
-            }
-        }
-        
+    const clearSingleItem = (item) =>{
+        // for (const objeto of cartList) {
+        //     if (objeto.id === itemId) {
+        //         delete cartList[objeto]
+        //     }
+        // }
+        const deleteProduct = cartList.filter((prod) => prod.item.id !== item.item.id);
+        console.log(deleteProduct)
+        setCartList([...deleteProduct])
     }
 
     //Funcion para vaciar carrito
     const clearCart =()=>{
         setCartList([])
+    }
+
+    //Funcion para sacar el precio total de la compra
+    const precioTotal = () =>{
+        // for (const item of cartList) {
+        //     setSumaTotal(sumaTotal + item.item.price * item.amount)
+        // }
+        
+        return cartList.reduce((acum, valor)=>(acum + (valor.amount * valor.item.price)), 0)
+
     }
 
     console.log(cartList);
@@ -64,6 +92,7 @@ function CartContextProvider({children}) {
             addItem,
             clearCart,
             clearSingleItem,
+            precioTotal,
 
         }}>
             {children}
