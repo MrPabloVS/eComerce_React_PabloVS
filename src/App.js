@@ -33,8 +33,8 @@ function App() {
             {/* <Route exact path="*">
               <h1>Pagina no encontrada</h1>
             </Route> */}
-            <Route exact path="/categories/:category"> 
-                <CategoryListContainer/>
+            <Route exact path="/categories/:categoryId"> 
+                <ItemListContainer/>
             </Route>
             <Route exact path="/info/:id">
                 <ItemDetailContainer/>

@@ -6,44 +6,44 @@ import Loading from "../Loading/Loading";
 
 
 
-function ItemList() {
-    const [lista, setLista] = useState([])
-    const [Loading, setLoading] = useState(true)
+function ItemList({lista}) {
+    //const [lista, setLista] = useState([])
+    //const [Loading, setLoading] = useState(true)
 
-    const getlista = async () => {
+    // const getlista = async () => {
 
-        try {
-            const respuesta = await axios.get( `https://fakestoreapi.com/products`)
-            console.log(respuesta.data)
-            setLista(respuesta.data)
-            console.log(lista)
-        } catch (error) {
-            console.log(error)
+    //     try {
+    //         const respuesta = await axios.get( `https://fakestoreapi.com/products`)
+    //         console.log(respuesta.data)
+    //         setLista(respuesta.data)
+    //         console.log(lista)
+    //     } catch (error) {
+    //         console.log(error)
             
-        }
-    }
+    //     }
+    // }
 
-    const cambiarEstadoCarga = ()=> {
-        setTimeout(() => {
-            setLoading(false)
-        }, 5000);
-    }
+    // const cambiarEstadoCarga = ()=> {
+    //     setTimeout(() => {
+    //         setLoading(false)
+    //     }, 5000);
+    // }
         
     
     
 
 
-    useEffect(() => {
-        getlista()
-        cambiarEstadoCarga()
-    }, []) 
+    // useEffect(() => {
+    //     getlista()
+    //     cambiarEstadoCarga()
+    // }, []) 
     
     
     return(
         <div>   
             {/* {Loading = false ? <Loading/> :} */}
             <Row xs={1} md={4} className="g-4">
-                {lista && lista.map(u=> <Item key={u.id}  itemName={u.title} itemPrice={"$" + u.price} itemImg={u.image} stockProp={5} itemId={u.id} />) }
+                {lista && lista.map(u=> <Item key={u.id}  itemName={u.title} itemPrice={"$" + u.price} itemImg={u.img} stockProp={5} itemId={u.id} />) }
             </Row>
         </div>
     );

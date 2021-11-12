@@ -8,24 +8,9 @@ import axios from "axios";
 
 function Navegacion() {
 
-  const [Categorias, setCategorias] = useState([])
+  const [Categorias, setCategorias] = useState(["electronics", "jewellery","masculine","feminine"])
 
-    const getCategorias = async () => {
-
-        try {
-            const respuesta = await axios.get( `https://fakestoreapi.com/products/categories`)
-            console.log(respuesta.data)
-            setCategorias(respuesta.data)
-            console.log(Categorias)
-        } catch (error) {
-            console.log(error)
-            
-        }
-    }
-
-  useEffect(() => {
-    getCategorias()
-}, []) 
+    
 
     return (
       <Navbar bg="light" expand="lg">
