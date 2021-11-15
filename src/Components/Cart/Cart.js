@@ -1,16 +1,91 @@
 
 
 import { useCartContext } from "../../Context/CartContext";
-import CartItem from "../CartItem/CartItem";
 import {Card,Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
+import {useState} from 'react'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import { getFirestore } from '../../sevices/getFirebase'
 
 
 function Cart() {
-    const {cartList, clearSingleItem, precioTotal} = useCartContext()
+    const {cartList, clearSingleItem, precioTotal, clearCart} = useCartContext()
+    const [formData, setFormData] = useState({
+        name:  'defaultName',
+        phone: 'defaultPhone',
+        email: 'defaultEmail',
+        cardN: 'defaultCardN'
+    })
     console.log(cartList)
 
     console.log(precioTotal)
+
+    const generarOrden = (e) =>{
+        //e.preventDefault()
+       
+    // armar la orden y su estructura
+     let orden = {}
+     orden.date = firebase.firestore.Timestamp.fromDate(new Date());    
+     orden.buyer = formData
+     orden.totalPrice = precioTotal();
+     orden.items = cartList.map(cartItem => {
+         const id = cartItem.item.id;
+         const nombre = cartItem.item.title;
+         const precio = cartItem.item.price * cartItem.amount;
+         
+         return {id, nombre, precio}   
+     })
+     
+     // agregar la orden a firebase
+     const dataBase = getFirestore();
+     const ordersCol = dataBase.collection('Orders');
+     ordersCol.add(orden)
+     .then((document)=>{
+         console.log(document.id)
+     })
+     .catch( err => {
+         console.log(err);
+     })
+     //Limpiar formulario
+     .finally(()=>{
+         clearCart()
+         setFormData({
+             name:  '',
+             phone: '',
+             email: '',
+             cardN: ''
+         })
+     })
+ 
+ 
+ 
+     //Actualizar stock
+     const itemsToUpdate = dataBase.collection('Items').where(
+         firebase.firestore.FieldPath.documentId(), 'in', cartList.map(i=> i.item.id)
+     )
+ 
+     const batch = dataBase.batch();
+ 
+     itemsToUpdate.get()
+     .then( collection=>{
+         collection.docs.forEach(docSnapshot => {
+             batch.update(docSnapshot.ref, {
+                 stock: docSnapshot.data().stock - cartList.find(item => item.item.id === docSnapshot.id).amount
+             })
+         })
+ 
+         batch.commit()
+            .then(res =>{
+                console.log('resultado del batch:', res)
+            })
+     })
+ 
+     
+     console.log(orden)
+ }
+ 
+ 
 
     function renderCondicionalCart() {
         if (cartList.length > 0 ) {
@@ -33,24 +108,17 @@ function Cart() {
                 <h2>No hay Productos en el carrito</h2>
             )  
         }}
+    
+    
 
     return(
         <div>
 
 
-            {/* { cartList.map(i => <CartItem key={i.item.id} itemName={i.item.title} itemAmount={i.amount} itemId={i.item.id} itemPrice={i.price}/>) } */}
-
-            {/* {cartList.map(item => <Card key={item.item.id} className="text-center">
-            <Card.Body>
-                <Card.Title>{item.amount} x {item.item.title}</Card.Title>
-                <Card.Text>{item.item.price}</Card.Text>
-                <Link to={`/info/${item.item.id}`}><Button variant="primary"> +info </Button></Link>
-            </Card.Body>
-            <Card.Footer className="text-muted text-danger" ><Button onClick={()=> clearSingleItem(item)} variant="outline-danger">Eliminar del Carro</Button></Card.Footer>
-        </Card>)} */}
-
         {renderCondicionalCart()}
-        <h3><h3>Precio Total: ${ precioTotal()} </h3></h3>
+        <h3>Precio Total: ${ precioTotal()} </h3>
+
+        <button onClick={()=>generarOrden()}>Terminar Compra</button>
 
         </div>
     )
