@@ -21,12 +21,12 @@ function ItemDetailContainer() {
         .catch(err=>console.log(err))
         .finally(()=> setLoading(false))
 
-    }, [])
+    }, [id])
 
     return(
      <div >
      { loading ? <Loading/> :
-         <ItemDetail item={Produc} itemName={Produc.title} itemPrice={"$" + Produc.price} itemImg={Produc.img} stockProp={5} itemId={id}></ItemDetail>}       
+         <ItemDetail item={Produc} itemName={Produc.title} itemPrice={"$" + Produc.price} itemImg={Produc.img} stockProp={Produc.stock} itemId={id}></ItemDetail>}       
      </div>
     )
 

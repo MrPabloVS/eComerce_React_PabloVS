@@ -1,23 +1,15 @@
 import ItemCount from '../ItemCount/ItemCount';
 import {Card,Button} from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 
 
 function ItemDetail({itemId,itemImg, itemName, itemPrice, stockProp, item }) {
     const {seClickeo} = ItemCount
-    const {addNumber} = ItemCount
-    const [totalOnCart, setTotalOnCart] = useState(0)
+    const [totalOnCart] = useState(item.amount)
 
-    // function onAdd  (addNumber) {
-    //     setTotalOnCart(totalOnCart + addNumber)
-    // }
-
-    // useEffect(() => {
-    //     onAdd()
-    // }, [])
-    console.log(seClickeo)
+    
     function decidirBoton() {
         if (seClickeo === false) {
             return(
@@ -38,9 +30,6 @@ function ItemDetail({itemId,itemImg, itemName, itemPrice, stockProp, item }) {
                     <Card.Text>
                     {itemPrice}
                     </Card.Text>
-                    {/* seClickeo = true ? <ItemCount stockProp={stockProp} totalOnCart={totalOnCart} itemId={itemId}/> :
-                     <div><Link to="/cart"><Button>Terminar mi compra</Button></Link>
-                    <Link to="/"><Button>Seguir Comprando</Button></Link></div>  */}
                     <ItemCount item={item} stockProp={stockProp} totalOnCart={totalOnCart} itemId={itemId} itemName={itemName} itemPrice={itemPrice}/>
                     {decidirBoton()}
                 </Card.Body>

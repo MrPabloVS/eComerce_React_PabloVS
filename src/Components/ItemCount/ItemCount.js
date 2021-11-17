@@ -1,24 +1,16 @@
 import {ButtonGroup, Button, Row, Col} from 'react-bootstrap';
 import React, {useState, useEffect} from 'react';
-import { useContext } from 'react';
-import CartContextProvider from '../../Context/CartContext';
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../Context/CartContext'
 
-function ItemCount({stockProp, totalOnCart, itemId, itemName, itemPrice, item}) {
+function ItemCount({stockProp, totalOnCart, item}) {
 
-    const [stock, setstock] = useState(stockProp - totalOnCart)
+    const [stock] = useState(stockProp - totalOnCart)
     const [addNumber, setAddNumber] = useState(1)
-    const {cartList, addItem} = useCartContext()
+    const {addItem} = useCartContext()
     const [seClickeo, setSeClickeo] = useState(false)
     
-    /* class cartItem {
-        constructor(id, amount, name) {
-            this.id = id;
-            this.amount = amount;
-            this.name = name;
-        }
-    } */
+    
     
 
     function alClick() {
@@ -28,7 +20,6 @@ function ItemCount({stockProp, totalOnCart, itemId, itemName, itemPrice, item}) 
     
     
     function decidirBoton() {
-        console.log(seClickeo)
         if (seClickeo === false) {
             return(
                 <div className="container-fluid">
@@ -42,7 +33,7 @@ function ItemCount({stockProp, totalOnCart, itemId, itemName, itemPrice, item}) 
                 </Col>
                 <Col>
                     <div className="d-grid gap-2">
-                        <Button onClick ={()=>alClick() /*setSeClickeo(true)  , ()=>addItem(itemId, addNumber) */ } variant="outline-success" size="lg">Agregar al Carrito</Button>
+                        <Button onClick ={()=>alClick()} variant="outline-success" size="lg">Agregar al Carrito</Button>
                     </div>
                 </Col>
             </Row>
@@ -56,7 +47,6 @@ function ItemCount({stockProp, totalOnCart, itemId, itemName, itemPrice, item}) 
 
         useEffect(() => {
             setSeClickeo(false)
-            console.log(seClickeo)
         }, [])
     
     function plusNumber() {
@@ -72,20 +62,7 @@ function ItemCount({stockProp, totalOnCart, itemId, itemName, itemPrice, item}) 
 
     return(
         <div className="container-fluid">
-            {/* <Row>
-                <Col>
-                    <ButtonGroup aria-label="Basic example" className="align-items-center">
-                        <Button variant="primary" onClick={()=>minusNumber()}>-</Button>
-                        <Button variant="secondary"> {addNumber} </Button>
-                        <Button variant="primary" onClick={()=>plusNumber()}>+</Button>
-                    </ButtonGroup> <br />
-                </Col>
-                <Col>
-                    <div className="d-grid gap-2">
-                        <Button onClick ={cartList(itemId), setSeClickeo(true)} variant="outline-success" size="lg">Agregar al Carrito</Button>
-                    </div>
-                </Col>
-            </Row> */}
+            
             {decidirBoton()}
             
         </div>

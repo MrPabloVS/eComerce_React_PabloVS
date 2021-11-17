@@ -17,12 +17,11 @@ function Cart() {
         email: 'defaultEmail',
         cardN: 'defaultCardN'
     })
-    console.log(cartList)
+    const [orderId, setOrderId] = useState("")
+    const [seCompro, setSeCompro] = useState(false)
+    
 
-    console.log(precioTotal)
-
-    const generarOrden = (e) =>{
-        //e.preventDefault()
+    const generarOrden = () =>{
        
     // armar la orden y su estructura
      let orden = {}
@@ -42,7 +41,7 @@ function Cart() {
      const ordersCol = dataBase.collection('Orders');
      ordersCol.add(orden)
      .then((document)=>{
-         console.log(document.id)
+         setOrderId(document.id)
      })
      .catch( err => {
          console.log(err);
@@ -76,13 +75,10 @@ function Cart() {
          })
  
          batch.commit()
-            .then(res =>{
-                console.log('resultado del batch:', res)
-            })
+            
      })
  
-     
-     console.log(orden)
+     setSeCompro(true)
  }
  
  
@@ -119,6 +115,10 @@ function Cart() {
         <h3>Precio Total: ${ precioTotal()} </h3>
 
         <button onClick={()=>generarOrden()}>Terminar Compra</button>
+
+        {seCompro ? 
+        <h3>Haz el seguimiento de tu compra con el siguiente codigo: {orderId} </h3>
+        :<></>}
 
         </div>
     )

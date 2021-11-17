@@ -3,24 +3,34 @@ import CartWidget from "../CartWidget/CartWidget";
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import {useState, useEffect} from 'react'
-import axios from "axios";
+import { useCartContext } from '../../Context/CartContext';
+
 
 
 function Navegacion() {
+  const [seeCart, setSeeCart] = useState(false)
+  const [Categorias] = useState(["electronics", "jewellery","masculine","feminine"])
+  const {cartList} = useCartContext()
 
-  const [Categorias, setCategorias] = useState(["electronics", "jewellery","masculine","feminine"])
+  useEffect(() => {
+    if (cartList.length > 0) {
+      setSeeCart(true)
+    } else{
+      setSeeCart(false)
+    }
+  }, [cartList])
 
     
 
     return (
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home"><CartWidget/></Navbar.Brand>
+          {seeCart ? <CartWidget/> : <></>}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
             <Link to="/"><Nav.Link href="#home">Home</Nav.Link></Link>
-              <Nav.Link href="#link">Link</Nav.Link>
+              <Link to="/cart"><Nav.Link href="#link">Cart</Nav.Link></Link>
               <NavDropdown title="Categories" id="basic-nav-dropdown">
                 {Categorias && Categorias.map(c => <Link to={`/categories/${c}`}><NavDropdown.Item href={`/categories/${c}`}>{c}</NavDropdown.Item></Link>)}
               </NavDropdown>
