@@ -5,8 +5,8 @@ import { getError } from './helpers/index.js'
 import http from 'http'
 import twilio from 'twilio'
 
-const accountSid = "AC833e61516e2e20e676dac947e78b8ff0"
-const authToken = "7d7a8bee6db840aa9a89e3d040980281"
+const accountSid = process.env.TWILIOSID
+const authToken = process.env.TWILIOTOKEN
 
 const client = twilio(accountSid, authToken)
 
