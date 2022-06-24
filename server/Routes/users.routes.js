@@ -6,5 +6,5 @@ import {
 
 export const userRouter = express.Router()
 
-userRouter.get('/admin', genAdminToken)
-userRouter.post('/admin', verifyToken)
+userRouter.get('/user', genAdminToken)
+userRouter.post('/user', verifyToken)

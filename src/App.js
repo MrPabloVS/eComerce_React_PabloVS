@@ -10,6 +10,8 @@ import { createContext } from 'react';
 import  CartContextProvider  from './Context/CartContext';
 import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
 import Cart from './Components/Cart/Cart';
+import Login from './Components/Login/Login';
+import Register from './Components/Register/Register'
 
 
 
@@ -38,6 +40,12 @@ function App() {
             </Route>
             <Route exact path="/cart">
               <Cart/>
+            </Route>
+            <Route exact path="/login">
+              <Login/>
+            </Route>
+            <Route exact path="/register">
+              <Register/>
             </Route>
             <Route exact path="*">
               <h1>Pagina no encontrada</h1>

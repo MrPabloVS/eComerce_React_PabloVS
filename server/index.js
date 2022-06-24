@@ -3,6 +3,22 @@ import express from 'express'
 import { productRouter, cartRouter, userRouter } from './routes/index.js'
 import { getError } from './helpers/index.js'
 import http from 'http'
+import twilio from 'twilio'
+
+const accountSid = "AC833e61516e2e20e676dac947e78b8ff0"
+const authToken = "7d7a8bee6db840aa9a89e3d040980281"
+
+const client = twilio(accountSid, authToken)
+
+try {
+  const message = await client.messages.create({
+    body: "Hola, funciona?",
+    from: "+14155238886",
+    to:"+5471665003"
+  })
+} catch (error) {
+  console.log(error)
+};
 
 const app = express()
 const server = http.createServer(app)
