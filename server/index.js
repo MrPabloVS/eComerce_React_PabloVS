@@ -11,9 +11,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename)
 
 //////const client = twilio(accountSid, authToken)
-//! descomentar para funcionar
-//const accountSid = 'AC833e61516e2e20e676dac947e78b8ff0'; 
-//const authToken = "d70bd2920c69bcea56c98bf7a1aedded"; 
+//! OJO LAS CLAVES
+const accountSid = process.env.TWILIOSID//'AC833e61516e2e20e676dac947e78b8ff0'; 
+const authToken = process.env.TWILIOTOKEN//"d70bd2920c69bcea56c98bf7a1aedded"; 
 const client = twilio(accountSid, authToken); 
  
 client.messages 
