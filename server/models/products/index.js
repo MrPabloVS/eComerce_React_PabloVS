@@ -1,6 +1,0 @@
-export * from './createTable.models.js'
-export * from './addProducts.models.js'
-export * from './getProducts.models.js'
-export * from './updateProducts.models.js'
-export * from './deleteProducts.models.js'
-export * from './productsSchema'
