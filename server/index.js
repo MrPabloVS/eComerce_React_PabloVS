@@ -6,24 +6,26 @@ import http from 'http'
 import twilio from 'twilio'
 import path from 'path'
 import {fileURLToPath} from 'url';
+import { Server}  from "socket.io"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename)
 
 //////const client = twilio(accountSid, authToken)
+//* TWilio 
 //! OJO LAS CLAVES
-const accountSid = process.env.TWILIOSID//'AC833e61516e2e20e676dac947e78b8ff0'; 
-const authToken = process.env.TWILIOTOKEN//"d70bd2920c69bcea56c98bf7a1aedded"; 
-const client = twilio(accountSid, authToken); 
+// const accountSid = 'AC833e61516e2e20e676dac947e78b8ff0'; 
+// const authToken = "d70bd2920c69bcea56c98bf7a1aedded"; 
+// const client = twilio(accountSid, authToken); 
  
-client.messages 
-      .create({ 
-         body: 'uuuu',  
-         messagingServiceSid: 'MGcd3cba078729fa16a1c43ac65ccfc4dd',      
-         to: '+5491171665003' 
-       }) 
-      .then(message => console.log(message.sid)) 
-      .done();
+// client.messages 
+//       .create({ 
+//          body: 'su pedido a sido recibido y se encuentra en camino',  
+//          messagingServiceSid: 'MGcd3cba078729fa16a1c43ac65ccfc4dd',      
+//          to: '+5491171665003' 
+//        }) 
+//       .then(message => console.log(message.sid)) 
+//       .done();
 
 // try {
 //   const message = await client.messages.create({
@@ -39,15 +41,32 @@ const app = express()
 const server = http.createServer(app)
 const PORT = process.env.PORT || 8000
 
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
 
+const httpServer = http.createServer(app)
+const io = new Server(httpServer)
+
 
 //app.use('/api', productRouter)
 //app.use('/api', cartRouter)
 app.use('/api', userRouter)
+
+io.on("connection", socket => {
+  // console.log("SocketIO Connected!");
+  // const messages = JSON.parse(fs.readFileSync("mensajes.json", utf));
+  // mensajesDB = messages;
+  // socket.emit("initial", messages);
+  // socket.on("sendMessage", (data) => {
+  //     data.timestamp = (new Date).toLocaleString();
+  //     mensajesDB.push(data);
+  //     io.sockets.emit("shareMessages", mensajesDB);
+  //     fs.writeFileSync("mensajes.json", JSON.stringify(mensajesDB), utf);
+  // });
+})
 
 app.use(function (err, req, res, next) {
   const error = getError(err.code, err.message)
