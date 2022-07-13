@@ -33,7 +33,7 @@
     "yarn": "^1.22.19"
   },
   "scripts": {
-    "start-clent": "react-scripts start",
+    "start-client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

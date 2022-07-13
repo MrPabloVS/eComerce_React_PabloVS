@@ -8,6 +8,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import { createContext } from 'react';
 import  CartContextProvider  from './Context/CartContext';
+import UsersContextProvider from './Context/UsersContext';
 import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
 import Cart from './Components/Cart/Cart';
 import Login from './Components/Login/Login';
@@ -24,35 +25,37 @@ function App() {
 
   return (
     <AppContext.Provider>
-      <CartContextProvider>
-        <BrowserRouter>
-          <Navegacion/>
-          <Switch>
-            <Route exact path="/">
-                <ItemListContainer/>
-            </Route>
-            
-            <Route exact path="/categories/:categoryId"> 
-                <ItemListContainer/>
-            </Route>
-            <Route exact path="/info/:id">
-                <ItemDetailContainer/>
-            </Route>
-            <Route exact path="/cart">
-              <Cart/>
-            </Route>
-            <Route exact path="/login">
-              <Login/>
-            </Route>
-            <Route exact path="/register">
-              <Register/>
-            </Route>
-            <Route exact path="*">
-              <h1>Pagina no encontrada</h1>
-            </Route> 
-          </Switch>
-        </BrowserRouter>
-      </CartContextProvider>
+      <UsersContextProvider>
+        <CartContextProvider>
+          <BrowserRouter>
+            <Navegacion/>
+            <Switch>
+              <Route exact path="/">
+                  <ItemListContainer/>
+              </Route>
+              
+              <Route exact path="/categories/:categoryId"> 
+                  <ItemListContainer/>
+              </Route>
+              <Route exact path="/info/:id">
+                  <ItemDetailContainer/>
+              </Route>
+              <Route exact path="/cart">
+                  <Cart/>
+              </Route>
+              <Route exact path="/login">
+                  <Login/>
+              </Route>
+              <Route exact path="/register">
+                  <Register/>
+              </Route>
+              <Route exact path="*">
+                  <h1>Pagina no encontrada</h1>
+              </Route> 
+            </Switch>
+          </BrowserRouter>
+        </CartContextProvider>
+      </UsersContextProvider>
     </AppContext.Provider>
   );
 }

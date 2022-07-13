@@ -61,7 +61,7 @@ function CartContextProvider({children}) {
 
         }}>
             {children}
-        </CartContext.Provider>
+        </CartContext.Provider> 
 
     )
 }

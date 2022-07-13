@@ -1,4 +1,12 @@
 import jwt from 'jsonwebtoken'
+import { getFirestore } from '../../sevices/getFirebase'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+
+// Configurar Firebase
+const dataBase = getFirestore();
+const usersController = dataBase.collection("Users")
+
 
 export const genAdminToken = (req, res, next) => {
   try {
@@ -37,4 +45,36 @@ export const verifyToken = (req, res, next) => {
   } catch (error) {
     next(error)
   }
+}
+
+
+
+export const registerUser = async (req, res) => { 
+  
+  await usersController.add(req)
+          .then((document)=>{
+            res.send(req)
+            console.log(`registrado ${document.Username} id: ${document.id}`)
+          })
+         .catch( err => {
+            console.log(err);
+          })
+
+}
+
+export const loginUser = (req, res) => { 
+
+  const db = dataBase.collection('Items').where({
+    MailAdress: req.mail,
+    Password: req.pass})
+
+  if (db) {
+    res.send({
+      boolean: true,
+      user: db
+    })
+  } else {
+    res.send({boolean: false})
+  }
+
 }
