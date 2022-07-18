@@ -7,6 +7,9 @@ import twilio from 'twilio'
 import path from 'path'
 import {fileURLToPath} from 'url';
 import { Server}  from "socket.io"
+import { graphqlHTTP } from 'express-graphql'
+import { buildSchema } from 'graphql'
+import { getUser, getUsers, createUser } from './Controllers/graphql.controllers.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename)
@@ -37,6 +40,29 @@ const __dirname = path.dirname(__filename)
 //   console.log(error)
 // };
 
+const schema = buildSchema(`
+     type User {
+        username: String
+        email: String
+        password: String
+ }
+    input UserINput {
+        username: String!
+        email: String!
+        password: String!
+    }
+
+    type Query {
+       userGet(email: String!): User
+    }
+
+    type Mutation {
+        createUser(usuario: UsuarioInput): User
+        updateUser(email: String!, usuario: UsuarioUpdateInput): User
+        deleteUser(email: String!): String
+    }
+`)
+
 const app = express()
 const server = http.createServer(app)
 const PORT = process.env.PORT || 8000
@@ -54,6 +80,14 @@ const io = new Server(httpServer)
 //app.use('/api', productRouter)
 //app.use('/api', cartRouter)
 app.use('/api', userRouter)
+app.use("/graphql", graphqlHTTP({
+  schema: schema,
+  rootValue: {
+    getUsers,
+    getUser,
+    createUser
+  }
+}))
 
 io.on("connection", socket => {
   // console.log("SocketIO Connected!");
